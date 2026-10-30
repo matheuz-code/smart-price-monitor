@@ -2,12 +2,11 @@ import psycopg2
 
 
 def conectar():
-    conn = psycopg2.connect(
-        host="localhost",
-        database="scraper_db",
-        user="postgres",
-        password="postgres"
-    )
+    import os
+    database_url = os.getenv("DATABASE_URL")
+    if not database_url:
+        raise RuntimeError("Defina DATABASE_URL ou execute python demo.py para demonstrar sem banco.")
+    conn = psycopg2.connect(database_url)
     return conn
 
 
