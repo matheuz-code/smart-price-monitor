@@ -8,9 +8,9 @@ Código: https://github.com/matheuz-code/smart-price-monitor
 
 https://matheuz-code.github.io/smart-price-monitor/
 
-Interface estática de portfólio no GitHub Pages, com pesquisa, comparação e estado sem resultados. Os quatro registros são inteiramente fictícios; não há consulta a lojas, preços reais ou APIs externas. A API Python é demonstrada separadamente em execução local.
+Aplicação interativa client-side no GitHub Pages, com pesquisa por nome, filtro por categoria, ordenação crescente/decrescente, cálculo em centavos, indicação do menor preço de cada produto e estado sem resultados. As seis ofertas, relativas a três produtos, são inteiramente fictícias; não há consulta a lojas, preços reais ou APIs externas. A API Python é demonstrada separadamente em execução local.
 
-![Captura real da demonstração publicada](docs/demo-preview.jpg)
+![Captura real de versão anterior da demonstração](docs/demo-preview.jpg)
 
 ## Demonstração gratuita sem configuração
 
@@ -43,7 +43,11 @@ python -m streamlit run dashboard.py
 
 As tabelas `produtos` e `quedas_detectadas` precisam existir. A versão legada ainda não possui migrações automatizadas. A demonstração acima funciona sem essa instalação e é recomendada para avaliação rápida.
 
-## Testes
+## Testes da aplicação web
+
+`node --test docs/price-core.test.mjs` — 3 testes aprovados: busca, diferenças, ordenação e filtros. Execute a página local com `python3 -m http.server 8000 --directory docs`. A versão web não chama a API Python.
+
+## Testes Python
 
 ```bash
 python -m unittest discover -s tests -v
@@ -56,3 +60,7 @@ python -m unittest discover -s tests -v
 Fontes externas podem falhar por alterações de HTML, autenticação, CAPTCHA ou bloqueios. Não contorne esses mecanismos: interrompa a coleta. O coletor Mercado Livre é experimental e pode associar títulos, preços e links incorretamente. Magalu e Casas Bahia estão desativados. XLSX históricos não representam preços atuais. Não há autenticação, isolamento entre usuários ou agendamento hospedado. O projeto não é um SaaS comercial concluído.
 
 Nenhum plano pago, assinatura, cartão ou API paga é necessário para a demonstração, feita somente com a biblioteca padrão do Python. O README anterior foi preservado em `docs/README_HISTORICO.md` como histórico; o estado atual é descrito neste arquivo.
+
+## Homologação da demonstração pública em 30/10/2026
+
+URL aberta sem login de hospedagem. Busca por NOTEBOOK com espaços: duas ofertas; R$ 2.650,00 e R$ 2.800,00, diferença de R$ 150,00. Ordenação decrescente e pesquisa inexistente verificadas no navegador. Após recarga, o catálogo inicial funciona. Busca de mouse em iframe com largura nominal de 390 px (375 px úteis, com barra de rolagem): sem rolagem horizontal. Não equivale a teste em aparelho físico.
