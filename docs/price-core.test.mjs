@@ -1,0 +1,4 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {compare} from './price-core.mjs';
+test('busca normaliza maiúsculas e espaços',()=>{assert.equal(compare('  NOTEBOOK  ').length,2);assert.equal(compare('inexistente').length,0);});
+test('compara preços e diferenças em centavos',()=>{const p=compare('notebook');assert.equal(p[0].cents,265000);assert.equal(p[0].difference,0);assert.equal(p[1].difference,15000);assert.equal(compare('mouse')[1].difference,1000);});
+test('ordena nos dois sentidos e filtra categoria',()=>{for(const direction of ['asc','desc']){const p=compare('',direction);assert.ok(p.every((x,i)=>i===0||(direction==='asc'?p[i-1].cents<=x.cents:p[i-1].cents>=x.cents)));}assert.equal(compare('notebook','asc','Acessórios').length,0);assert.equal(compare('','asc','Informática').length,2);});
