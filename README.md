@@ -4,6 +4,14 @@ Projeto Python de monitoramento e comparação de preços, com coletores modular
 
 Código: https://github.com/matheuz-code/smart-price-monitor
 
+## Demonstração online
+
+https://matheuz-code.github.io/smart-price-monitor/
+
+Interface estática de portfólio no GitHub Pages, com pesquisa, comparação e estado sem resultados. Os quatro registros são inteiramente fictícios; não há consulta a lojas, preços reais ou APIs externas. A API Python é demonstrada separadamente em execução local.
+
+![Captura real da demonstração publicada](docs/demo-preview.jpg)
+
 ## Demonstração gratuita sem configuração
 
 ```bash
