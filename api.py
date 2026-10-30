@@ -4,16 +4,8 @@ import psycopg2
 app = FastAPI()
 
 
-def conectar():
+from database.db import conectar
 
-    conn = psycopg2.connect(
-        host="localhost",
-        database="scraper_db",
-        user="postgres",
-        password="postgres"
-    )
-
-    return conn
 
 
 @app.get("/")

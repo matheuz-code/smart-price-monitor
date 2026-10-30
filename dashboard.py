@@ -17,43 +17,14 @@ st.set_page_config(
 # -------------------------------
 # CONEXÃO COM BANCO
 # -------------------------------
-def conectar():
-    conn = psycopg2.connect(
-        host="localhost",
-        database="scraper_db",
-        user="postgres",
-        password="postgres"
-    )
-    return conn
+from database.db import conectar
+
 
 
 # -------------------------------
 # LIMPEZA DE PREÇO
 # -------------------------------
-def limpar_preco(valor):
-    if valor is None:
-        return None
-
-    valor = str(valor).strip()
-
-    if valor == "" or valor.lower() in ["sem preço", "none"]:
-        return None
-
-    valor = valor.replace("£", "")
-    valor = valor.replace("R$", "")
-    valor = valor.replace("Â", "")
-    valor = valor.replace(",", ".")
-
-    numero = re.findall(r"\d+\.\d+|\d+", valor)
-
-    if numero:
-        try:
-            return float(numero[0])
-        except:
-            return None
-
-    return None
-
+from pricing import limpar_preco
 
 # -------------------------------
 # CARREGAR PRODUTOS
